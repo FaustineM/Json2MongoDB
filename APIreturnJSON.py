@@ -7,7 +7,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 # IP adress of the VM where MongoDB is. (VM 'UXE' using Red Hat)
-ip_address = "138.195.53.231"
+ip_address = "0.0.0.0"
 # Connect to MongoDB server running on 27017
 client = MongoClient("mongodb://%s:27017" %ip_address)
 db = client.db_tpnosql
