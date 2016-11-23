@@ -1,21 +1,23 @@
 import json
 import pprint
 from pymongo import MongoClient
+from flask import Flask
 
-# JSON file
-repos = json.load(open("repos_data.json"))
+# TP NoSQL
+# Extract data from Github API into MongoDB
 
-# IP adress of the VM where MongoDB is.
-ip_address = "0.0.0.0"
+# JSON file containing data on repositories from Github :
+repos_json = json.load(open("repos_data.json"))
 
-# Connect to the mongoDB
+# IP adress of the VM where MongoDB is. (VM 'UXE' using Red Hat)
+ip_address = "138.195.53.231"
+# Connect to MongoDB server running on 27017
 client = MongoClient("mongodb://%s:27017" %ip_address)
 db = client.db_tpnosql
 
-print(client)
-
-# Extract repositories' name and id, owners' name and languages from json file to MongoDB
-for item in repos :
+# Extract repositories' name and id, owners' name and languages
+# from json file to MongoDB
+for item in repos_json :
     repos_dict = {}
     repos_dict['id']=item.get('id')
     repos_dict['name']=item.get('name')
